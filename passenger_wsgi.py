@@ -1,0 +1,1 @@
+from equilibre.wsgi import application  # Remplacez "myproject" par votre nom de projet

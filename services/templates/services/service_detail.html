@@ -1,0 +1,171 @@
+{% extends "core/base.html" %}
+{% load static %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/services.css' %}">
+<style>
+    /* Styles spécifiques à la page de détail */
+    .service-header {
+        background-size: cover;
+        background-position: center;
+        min-height: 70vh;
+        display: flex;
+        align-items: center;
+        position: relative;
+    }
+    .service-header::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.3));
+    }
+    .service-header img {
+        pointer-events: none;
+    }
+    
+    /* Animation d'entrée personnalisée */
+    @keyframes sectionEntrance {
+        from {
+            opacity: 0;
+            transform: translateY(40px) rotateX(10deg);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0) rotateX(0);
+        }
+    }
+    
+    .animate-on-scroll {
+        animation: sectionEntrance 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        opacity: 0;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<main class="service-detail-page">
+  
+    <header class="service-header text-white mb-5" style="background-image: url('{{ service.header_image.url }}')">
+        <div class="container position-relative z-index-1">
+            <div class="row justify-content-center">
+                <div class="col-md-10 text-center">
+                    <div class="service-icon-masthead d-inline-block p-4 rounded-4 mb-4">
+                        <i class="{{ service.icon }} fs-1"></i>
+                    </div>
+                    <h1 class="display-3 mb-4">{{ service.name }}</h1>
+                    <p class="lead mb-5">{{ service.short_description }}</p>
+                </div>
+            </div>
+        </div>
+    </header>
+<!-- Section Description Complète -->
+<section class="py-7 description-section animate-on-scroll mb-5">
+    <div class="animated-background">
+        <div class="container">
+            <div class="row g-5 align-items-center">
+                <div class="col-lg-6">
+                    <div class="media-wrapper rounded-4 shadow-lg overflow-hidden hover-scale">
+                        <img src="{{ service.full_description_image.url }}" 
+                             alt="{{ service.name }}" 
+                             class="img-fluid"
+                             loading="lazy">
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="ps-xl-4 text-center">
+                        <h2 class="display-5 mb-4 gradient-text">Notre approche</h2>
+                        <div class="service-description fs-5 lh-lg glassmorphism-effect">
+                            {{ service.full_description|safe }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Section Atouts -->
+{% if service.strengths_image %}
+<section class="py-7 strengths-section animate-on-scroll mb-5">
+    <div class="animated-background">
+        <div class="container">
+            <div class="row g-5 align-items-center">
+                <div class="col-lg-6 order-lg-0">
+                    <div class="media-wrapper rounded-4 shadow-lg overflow-hidden hover-scale">
+                        <img src="{{ service.strengths_image.url }}" 
+                             alt="Atouts {{ service.name }}"
+                             class="img-fluid"
+                             loading="lazy">
+                    </div>
+                </div>
+                <div class="col-lg-6 order-lg-1">
+                    <div class="ps-xl-4 text-center">
+                        <h2 class="display-5 mb-4 gradient-text">Nos atouts techniques</h2>
+                        <div class="strengths-text glassmorphism-effect">
+                            {{ service.strengths_text|linebreaks }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endif %}
+
+    <!-- Section CTA -->
+    <section class="py-6 cta-section animate-on-scroll mt-5">
+        <div class="container text-center">
+            <a href="{% url 'contact_form' %}?service={{ service.slug }}" 
+               class="btn btn-cta animated-btn">
+                <i class="fas fa-comments btn-icon"></i>
+                <span class="btn-text">Discutons-en maintenant</span>
+                <div class="hover-effect"></div>
+            </a>
+        </div>
+    </section>
+</main>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    // Configuration de l'observateur pour les animations
+    const sectionObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.style.animationPlayState = 'running';
+            }
+        });
+    }, { threshold: 0.15 });
+
+    // Application aux sections
+    document.querySelectorAll('.animate-on-scroll').forEach(section => {
+        section.style.animationPlayState = 'paused';
+        sectionObserver.observe(section);
+    });
+
+    // Animation au survol des images
+    document.querySelectorAll('.hover-scale').forEach(element => {
+        element.addEventListener('mousemove', (e) => {
+            const rect = element.getBoundingClientRect();
+            const x = (e.clientX - rect.left) / rect.width - 0.5;
+            const y = (e.clientY - rect.top) / rect.height - 0.5;
+            
+            element.style.transform = `
+                perspective(1000px)
+                rotateX(${y * 5}deg)
+                rotateY(${x * 5}deg)
+                scale(1.03)
+            `;
+        });
+
+        element.addEventListener('mouseleave', () => {
+            element.style.transform = 'none';
+        });
+    });
+});
+</script>
+{% endblock %}

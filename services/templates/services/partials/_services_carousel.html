@@ -1,0 +1,35 @@
+<!-- Partial: Carousel des Services Connexes -->
+<section class="related-services py-6">
+    <div class="container">
+        <h2 class="text-center mb-5 h3">Explorez Nos Autres Expertises</h2>
+        
+        <div class="swiper services-carousel">
+            <div class="swiper-wrapper">
+                {% for service in all_services %}
+                <div class="swiper-slide">
+                    <a href="{% url 'service-detail' service.slug %}" 
+                       class="service-card-link">
+                        <div class="card border-0 h-100">
+                            <div class="card-img-top-wrapper">
+                                <img src="{{ service.image.url }}" 
+                                     alt="{{ service.name }}"
+                                     class="card-img-top"
+                                     loading="lazy">
+                                <div class="service-overlay"></div>
+                            </div>
+                            <div class="card-body text-center">
+                                <h3 class="h6 mb-0">{{ service.name }}</h3>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                {% endfor %}
+            </div>
+
+            <!-- Contrôles -->
+            <div class="swiper-pagination"></div>
+            <div class="swiper-button-prev"></div>
+            <div class="swiper-button-next"></div>
+        </div>
+    </div>
+</section>

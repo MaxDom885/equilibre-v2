@@ -1,0 +1,58 @@
+{% extends "core/base.html" %}
+{% load static %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/services.css' %}">
+{% endblock %}
+
+{% block content %}
+<section class="service-listing py-6 bg-light">
+    <div class="container">
+        <div class="text-center mb-5 fade-in">
+            <h1 class="display-3 fw-bold mb-3">Nos Expertises Digitales</h1>
+            <p class="lead text-muted">Des solutions sur mesure pour votre transformation numérique</p>
+        </div>
+
+        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+            {% for service in services %}
+            <div class="col">
+                <article class="service-card card border-0 h-100 overflow-hidden transform-on-hover">
+                    
+                    <div class="card-img-wrapper position-relative">
+                        <img src="{{ service.image.url }}" 
+                             alt="{{ service.name }}" 
+                             class="card-img-top service-image" 
+                             loading="lazy">
+                        
+                        <div class="service-badge">
+                            <i class="bi {{ service.icon }} fs-3 text-white"></i>
+                        </div>
+
+                        <div class="hover-content bg-white p-4">
+                            <h3 class="h5 mb-2">{{ service.name }}</h3>
+                            <div class="service-hover-text">
+                                {{ service.short_description }}
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card-body p-4">
+                        <h2 class="h4 mb-3">{{ service.name }}</h2>
+                        <a href="{% url 'service-detail' service.slug %}" 
+                           class="btn btn-outline-primary stretched-link">
+                            Découvrir <i class="fas fa-arrow-right ms-2"></i>
+                        </a>
+                    </div>
+                </article>
+            </div>
+            {% empty %}
+            <div class="col-12 text-center py-6">
+                <div class="alert alert-info fade-in">
+                    De nouvelles expertises arrivent bientôt...
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% endblock %}

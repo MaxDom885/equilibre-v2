@@ -1,0 +1,114 @@
+{% extends "core/base.html" %}
+{% load static %}
+
+{% block title %}Contactez-nous | Agence Equilibre{% endblock %}
+
+{% block content %}
+<!-- Section Contact -->
+<section class="contact-section py-5">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-10">
+                <div class="contact-card bg-white rounded-4 overflow-hidden shadow-lg">
+                    <div class="row g-0">
+                        <!-- Formulaire Column -->
+                        <div class="col-lg-7 p-5">
+                            <h2 class="display-5 fw-bold text-cobalt mb-4">Parlons de votre projet</h2>
+                            
+                            <form method="post" class="needs-validation" novalidate>
+                                {% csrf_token %}
+                                
+                                <div class="mb-4">
+                                    <label for="id_name" class="form-label fw-medium">Votre nom</label>
+                                    <input type="text" class="form-control py-3 px-4" id="id_name" name="name" required>
+                                    <div class="invalid-feedback">Merci de renseigner votre nom</div>
+                                </div>
+                                
+                                <div class="mb-4">
+                                    <label for="id_email" class="form-label fw-medium">Votre email</label>
+                                    <input type="email" class="form-control py-3 px-4" id="id_email" name="email" required>
+                                    <div class="invalid-feedback">Merci de renseigner un email valide</div>
+                                </div>
+                                
+                                <div class="mb-4">
+                                    <label for="id_message" class="form-label fw-medium">Votre message</label>
+                                    <textarea class="form-control py-3 px-4" id="id_message" name="message" rows="5" required></textarea>
+                                    <div class="invalid-feedback">Merci de saisir votre message</div>
+                                </div>
+
+                                <!-- Honeypot -->
+                                <div class="d-none">
+                                    {{ form.honeypot }}
+                                </div>
+
+                                <!-- Captcha -->
+                                <div class="mb-4">
+                                    <label for="id_captcha" class="form-label fw-medium">Vérification anti-robot</label>
+                                    <div class="mb-2 text-danger">
+                                        {{ form.captcha.errors }}
+                                    </div>
+                                    <div class="d-flex justify-content-center mb-2">
+                                        {{ form.captcha }}
+                                    </div>
+                                    <small class="text-muted">
+                                        Veuillez résoudre le Captcha pour confirmer que vous n'êtes pas un robot.
+                                    </small>
+                                </div>
+                                
+                                <button type="submit" class="btn btn-accent btn-lg w-100 py-3 mt-2">
+                                    <i class="fas fa-paper-plane me-2"></i> Envoyer le message
+                                </button>
+                            </form>
+                        </div>
+                        
+                        <!-- Info Column -->
+                        <div class="col-lg-5 bg-cobalt text-white p-5 position-relative">
+                            <div class="position-relative z-2">
+                                <h3 class="h4 fw-bold mb-4">Nos coordonnées</h3>
+                                <ul class="list-unstyled contact-info">
+                                    <li class="mb-4 d-flex">
+                                        <i class="fas fa-map-marker-alt mt-1 me-3 text-jordy-blue"></i>
+                                        <span>{{ config.address|default:"123 Rue Digitale, 75000 Paris" }}</span>
+                                    </li>
+                                    <li class="mb-4 d-flex">
+                                        <i class="fas fa-phone mt-1 me-3 text-jordy-blue"></i>
+                                        <a href="tel:{{ config.call_phone|cut:' '|default:'+33123456789' }}" class="text-white hover-underline">
+                                            {{ config.call_phone|default:"+33 1 23 45 67 89" }}
+                                        </a>
+                                    </li>
+                                    <li class="mb-4 d-flex">
+                                        <i class="fab fa-whatsapp mt-1 me-3 text-jordy-blue"></i>
+                                        <a href="https://wa.me/{{ config.whatsapp_phone|cut:' '|cut:'+'|default:'33612345678' }}" class="text-white hover-underline" target="_blank">
+                                            {{ config.whatsapp_phone|default:"+33 6 12 34 56 78" }}
+                                        </a>
+                                    </li>
+                                    <li class="mb-4 d-flex">
+                                        <i class="fas fa-envelope mt-1 me-3 text-jordy-blue"></i>
+                                        <a href="mailto:{{ config.email|default:'contact@exemple.com' }}" class="text-white hover-underline">
+                                            {{ config.email|default:"contact@exemple.com" }}
+                                        </a>
+                                    </li>
+                                </ul>
+                                
+                                <hr class="border-white opacity-25 my-4">
+                                
+                                <h4 class="h5 fw-bold mb-3">Horaires d'ouverture</h4>
+                                <p class="mb-4">{{ config.horaires|default:"Lun-Ven : 9h-18h" }}</p>
+                                
+                                <div class="social-links mt-4 pt-2">
+                                    {% if config.social_facebook %}
+                                    <a href="{{ config.social_facebook }}" class="text-white me-3 hover-scale" target="_blank" aria-label="Facebook">
+                                        <i class="fab fa-facebook-f fa-lg"></i>
+                                    </a>
+                                    {% endif %}
+                                    <!-- Other social icons... -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

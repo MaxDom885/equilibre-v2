@@ -1,0 +1,50 @@
+.hero-section {
+    position: relative;
+}
+
+.carousel-caption {
+    bottom: 30%;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+}
+
+.service-card {
+    transition: transform 0.3s;
+    border-radius: 12px;
+}
+
+.service-card:hover {
+    transform: translateY(-10px);
+}
+
+.counter {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+}
+
+.partners-swiper {
+    padding: 20px 0;
+}
+
+.partner-logo {
+    max-height: 200px;
+    width: auto;
+    filter: grayscale(100%);
+    opacity: 0.7;
+    transition: all 0.3s;
+}
+
+.partner-logo:hover {
+    filter: grayscale(0);
+    opacity: 1;
+}
+
+.btn-outline-cobalt {
+    color: var(--cobalt);
+    border-color: var(--cobalt);
+}
+
+.btn-outline-cobalt:hover {
+    background-color: var(--cobalt);
+    color: white;
+}

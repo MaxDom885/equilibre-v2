@@ -1,0 +1,510 @@
+/* ==================== */
+/* BASE STYLES */
+/* ==================== */
+
+.services-carousel {
+    background: rgba(42, 76, 125, 0.05);
+    border-radius: 1rem;
+    margin: 4rem 0;
+}
+
+.swiper-container {
+    padding: 2rem;
+}
+
+/* ==================== */
+/* ANIMATIONS KEYFRAMES */
+/* ==================== */
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(50px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes titleEntrance {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* ==================== */
+/* COMPONENTS STYLES */
+/* ==================== */
+
+/* Service Cards */
+.service-card {
+    height: 100%;
+    border-radius: 1rem;
+    overflow: hidden;
+    transition: 
+        transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94), 
+        box-shadow 0.3s ease;
+}
+
+.service-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.15);
+}
+
+/* Hover Content Effect */
+.service-card .card-body { 
+    position: relative; 
+    overflow: hidden; 
+}
+
+.service-card .text-secondary {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    position: absolute;
+    bottom: 65px;
+    left: 1rem;
+    right: 1rem;
+}
+
+.service-card:hover .text-secondary {
+    opacity: 1;
+    transform: translateY(0);
+    background: rgba(255,255,255,0.9);
+    padding: 1rem;
+    border-radius: 0.5rem;
+    backdrop-filter: blur(5px);
+}
+
+/* ==================== */
+/* SECTIONS STYLES */
+/* ==================== */
+
+/* Description & Strengths Sections */
+.description-section, 
+.strengths-section {
+    position: relative;
+    overflow: hidden;
+}
+
+.glassmorphism-effect {
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(12px);
+    border-radius: 1.5rem;
+    padding: 2.5rem;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    transition: all 0.4s ease;
+}
+
+/* Text Styles */
+.gradient-text {
+    background: linear-gradient(45deg, #2A4C7D, #3A6EA5);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    display: inline-block;
+    position: relative;
+    padding-bottom: 0.5rem;
+}
+
+.gradient-text::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 3px;
+    background: linear-gradient(90deg, #2A4C7D, #3A6EA5);
+    border-radius: 2px;
+}
+
+/* ==================== */
+/* MEDIA & IMAGES */
+/* ==================== */
+
+.media-wrapper {
+    position: relative;
+    border-radius: 1.5rem;
+    overflow: hidden;
+    transition: transform 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.media-wrapper::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+}
+
+.media-wrapper img {
+    transition: transform 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.hover-scale:hover img {
+    transform: scale(1.08);
+}
+
+/* ==================== */
+/* ANIMATED BACKGROUNDS */
+/* ==================== */
+
+.animated-background {
+    position: relative;
+    padding: 4rem 0;
+    overflow: hidden;
+    border-radius: 1.5rem;
+    transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.animated-background::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    transition: transform 0.6s ease-out;
+}
+
+/* Description Section - Blue Gradient */
+.description-section .animated-background::before {
+    background: linear-gradient(
+        45deg,
+        rgba(135, 206, 235, 0.1) 0%,
+        rgba(173, 216, 230, 0.15) 50%,
+        rgba(240, 248, 255, 0.2) 100%
+    );
+}
+
+/* Strengths Section - Red Gradient */
+.strengths-section .animated-background::before {
+    background: linear-gradient(
+        135deg,
+        rgba(255, 99, 71, 0.1) 0%,
+        rgba(255, 105, 97, 0.15) 50%,
+        rgba(255, 160, 122, 0.2) 100%
+    );
+}
+
+/* Hover Effects */
+.animated-background:hover::before {
+    transform: scale(1.02) rotate(0.5deg);
+    filter: brightness(102%);
+}
+
+/* ==================== */
+/* BOUTONS & CTA */
+/* ==================== */
+
+.btn-cta {
+    position: relative;
+    background: linear-gradient(135deg, #2A4C7D 0%, #3A6EA5 100%);
+    border: none;
+    color: white !important;
+    padding: 1.5rem 3rem;
+    border-radius: 50px;
+    font-size: 1.25rem;
+    font-weight: 600;
+    overflow: hidden;
+    transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    box-shadow: 0 10px 30px rgba(42, 76, 125, 0.3);
+}
+
+.btn-cta:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 15px 40px rgba(42, 76, 125, 0.4);
+}
+
+/* ==================== */
+/* RESPONSIVE DESIGN */
+/* ==================== */
+
+@media (max-width: 992px) {
+    .media-wrapper {
+        margin-bottom: 2rem;
+    }
+    
+    .glassmorphism-effect {
+        padding: 1.5rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .gradient-text::after {
+        width: 60px;
+    }
+    
+    .btn-cta {
+        padding: 1rem 2rem;
+        font-size: 1rem;
+    }
+}
+
+/* Nouveaux keyframes pour les animations */
+@keyframes cardEntrance {
+    from {
+        opacity: 0;
+        transform: translateY(40px) rotateX(10deg);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) rotateX(0);
+    }
+}
+
+/* Fond animé géométrique */
+.service-listing {
+    position: relative;
+    overflow: hidden;
+}
+
+.service-listing::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(
+        45deg,
+        #fff3cd 0%,
+        #ffe69c 25%,
+        #ffda6a 50%,
+        #ffcd39 75%,
+        #ffc107 100%
+    );
+    opacity: 0.1;
+    z-index: 0;
+    animation: gradientFlow 20s linear infinite;
+}
+
+@keyframes gradientFlow {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.service-listing .container {
+    position: relative;
+    z-index: 1;
+}
+
+/* Correction animation hover des cartes */
+.service-card .hover-content {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    pointer-events: none;
+}
+
+.service-card:hover .hover-content {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Animation des cartes au scroll */
+.service-card {
+    animation: cardEntrance 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    opacity: 0;
+    transform-style: preserve-3d;
+}
+
+/* Effet 3D au survol */
+.transform-on-hover {
+    transition: transform 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.transform-on-hover:hover {
+    transform: perspective(1000px) rotateX(5deg) rotateY(2deg) translateZ(20px);
+}
+
+/* Fond animé géométrique amélioré */
+.service-listing {
+    position: relative;
+    overflow: hidden;
+    isolation: isolate; /* Pour contenir les effets de superposition */
+    transition: transform 0.3s ease-out;
+  }
+  
+  .service-listing::before,
+  .service-listing::after {
+    content: '';
+    position: absolute;
+    inset: -50% 0;
+    z-index: -1;
+    background-repeat: repeat;
+    opacity: 0.7;
+    mix-blend-mode: soft-light;
+    animation: geometricAnim 20s linear infinite;
+    will-change: transform;
+  }
+  
+  /* Première couche de motifs */
+  .service-listing::before {
+    background: 
+      linear-gradient(45deg, 
+        rgba(255, 0, 100, 0.15) 25%, 
+        transparent 25%, 
+        transparent 75%, 
+        rgba(0, 200, 255, 0.15) 75%
+      ),
+      repeating-conic-gradient(
+        from 30deg,
+        rgba(255, 255, 255, 0.1) 0deg 15deg,
+        transparent 15deg 30deg
+      );
+    background-size: 60px 60px, 40px 40px;
+    animation-direction: reverse;
+  }
+  
+  /* Deuxième couche de motifs animés */
+  .service-listing::after {
+    background: 
+      repeating-linear-gradient(
+        -60deg,
+        transparent,
+        transparent 20px,
+        rgba(255,255,255,0.05) 20px,
+        rgba(255,255,255,0.05) 40px
+      ),
+      radial-gradient(circle at 50% 50%, 
+        rgba(150, 100, 255, 0.1),
+        transparent 70%);
+    background-size: 80px 120px, 200% 200%;
+    filter: blur(2px);
+    animation-duration: 25s;
+  }
+  
+  /* Animation 3D fluide */
+  @keyframes geometricAnim {
+    0% {
+      transform: translate(0, 0) rotate(0deg);
+    }
+    25% {
+      transform: translate(-5%, 5%) rotate(2deg);
+    }
+    50% {
+      transform: translate(5%, -3%) rotate(-1deg);
+    }
+    75% {
+      transform: translate(-3%, -5%) rotate(3deg);
+    }
+    100% {
+      transform: translate(0, 0) rotate(0deg);
+    }
+  }
+  
+  /* Effet au survol */
+  .service-listing:hover {
+    transform: translateY(-5px);
+  }
+  
+  .service-listing:hover::before {
+    background-size: 80px 80px, 60px 60px;
+    opacity: 0.9;
+    transition: all 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
+  }
+  
+  /* Effet de particules dynamiques */
+  .service-listing::after {
+    background-position: 0 0;
+  }
+  
+  @keyframes particleFlow {
+    100% {
+      background-position: 1000px 500px;
+    }
+  }
+  
+  .service-listing:hover::after {
+    animation: 
+      geometricAnim 15s linear infinite,
+      particleFlow 30s linear infinite;
+  }
+  
+  /* Lueur dynamique */
+  .service-listing:hover::before {
+    filter: drop-shadow(0 0 20px rgba(100, 150, 255, 0.3));
+  }
+
+  /* ==================== */
+/* SERVICE CARDS ENHANCEMENTS */
+/* ==================== */
+
+.service-card {
+    position: relative;
+    background: rgba(255, 255, 255, 0.9);
+    border: 1px solid rgba(42, 76, 125, 0.1);
+    transition: 
+        transform 0.4s cubic-bezier(0.23, 1, 0.32, 1),
+        box-shadow 0.4s ease,
+        background 0.4s,
+        border-color 0.4s;
+}
+
+.service-card:hover {
+    transform: perspective(1000px) 
+               translateY(-12px) 
+               rotateX(3deg) 
+               rotateY(1.5deg)
+               scale(1.02);
+    box-shadow: 0 30px 60px -15px rgba(42, 76, 125, 0.25);
+    background: rgba(255, 255, 255, 0.98);
+    border-color: rgba(42, 76, 125, 0.15);
+    backdrop-filter: blur(12px);
+    z-index: 2;
+}
+
+/* Gradient Border Effect */
+.service-card::before {
+    content: '';
+    position: absolute;
+    top: -1px;
+    left: -1px;
+    right: -1px;
+    bottom: -1px;
+    border-radius: 1rem;
+    background: linear-gradient(45deg, 
+        rgba(42, 76, 125, 0.1) 0%, 
+        rgba(58, 110, 165, 0.2) 50%, 
+        rgba(42, 76, 125, 0.1) 100%);
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    z-index: -1;
+}
+
+.service-card:hover::before {
+    opacity: 1;
+}
+
+/* Hover Content Enhancement */
+.service-card:hover .text-secondary {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(80, 143, 232, 0.1);
+}
+
+/* Touch Feedback Effect */
+.service-card:active {
+    transform: scale(0.98) translateY(0);
+    transition: transform 0.1s ease;
+}
+
+/* Mobile Optimization */
+@media (max-width: 768px) {
+    .service-card:hover {
+        transform: translateY(-8px) scale(1.01);
+    }
+    
+    .service-card::before {
+        display: none; /* Disable gradient border on mobile */
+    }
+}

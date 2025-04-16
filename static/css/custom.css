@@ -1,0 +1,334 @@
+:root {
+    --cobalt: #074FB3;
+    --primary-accent: #f00020;
+    --cod-gray: #090909;
+    --jordy-blue: #7AACF0;
+    --cobalt-light: rgba(7, 79, 179, 0.1);
+    --dropdown-shadow: 0 15px 40px rgba(7, 79, 179, 0.15);
+}
+
+/* ==================== */
+/* BASE STYLES */
+/* ==================== */
+body {
+    font-family: 'Poppins', sans-serif;
+    color: var(--cod-gray);
+}
+
+/* ==================== */
+/* NAVIGATION */
+/* ==================== */
+.navbar {
+    background-color: white !important;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1) !important;
+    padding: 0 !important;
+    transition: all 0.3s ease !important;
+}
+
+.navbar.scrolled {
+    padding: 0 !important;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15) !important;
+}
+
+.navbar-brand img.logo {
+    height: 50px;
+    width: auto;
+    max-width: 180px;
+    transition: all 0.3s ease;
+}
+
+.navbar-nav .nav-link {
+    color: var(--cod-gray) !important;
+    font-weight: 500;
+    position: relative;
+}
+
+.navbar-nav .nav-link:hover {
+    color: var(--cobalt) !important;
+}
+
+.navbar-nav .nav-link.active {
+    color: var(--cobalt) !important;
+    font-weight: 600;
+}
+
+/* ==================== */
+/* DROPDOWN - STYLE PREMIUM */
+/* ==================== */
+.navbar .dropdown-hover .dropdown-menu {
+    min-width: 280px !important;
+    border: none !important;
+    border-radius: 12px !important;
+    padding: 8px 0 !important;
+    box-shadow: var(--dropdown-shadow) !important;
+    background: white !important;
+    border-top: 3px solid var(--cobalt) !important;
+    margin-top: 15px !important;
+    opacity: 0 !important;
+    visibility: hidden !important;
+    transform: translateY(15px) !important;
+    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    display: block !important;
+}
+
+.navbar .dropdown-hover:hover .dropdown-menu {
+    opacity: 1 !important;
+    visibility: visible !important;
+    transform: translateY(8px) !important;
+}
+
+.navbar .dropdown-item {
+    padding: 10px 25px !important;
+    font-size: 0.95rem !important;
+    color: var(--cod-gray) !important;
+    transition: all 0.2s ease-out !important;
+    margin: 2px 12px !important;
+    border-radius: 6px !important;
+}
+
+.navbar .dropdown-item:hover {
+    background: var(--cobalt-light) !important;
+    color: var(--cobalt) !important;
+    padding-left: 30px !important;
+}
+
+.navbar .dropdown-item:hover::before {
+    content: "→";
+    position: absolute;
+    left: 15px;
+    color: var(--cobalt);
+}
+
+.navbar .dropdown-divider {
+    margin: 8px 20px !important;
+    border-color: rgba(7, 79, 179, 0.08) !important;
+}
+
+.navbar .dropdown-menu::before {
+    content: "";
+    position: absolute;
+    top: -6px;
+    left: 25px;
+    width: 12px;
+    height: 12px;
+    background: white;
+    transform: rotate(45deg);
+    border-top: 1px solid rgba(7, 79, 179, 0.1);
+    border-left: 1px solid rgba(7, 79, 179, 0.1);
+    z-index: 1;
+}
+
+/* ==================== */
+/* BOUTONS */
+/* ==================== */
+.btn-accent {
+    background-color: var(--primary-accent) !important;
+    color: white !important;
+    border-radius: 50px !important;
+    padding: 12px 24px !important;
+    font-weight: bold !important;
+    transition: all 0.3s ease !important;
+}
+
+.btn-accent:hover {
+    background-color: #d0001c !important;
+    transform: scale(1.05) !important;
+}
+
+/* ==================== */
+/* FOOTER - STYLES EXISTANTS */
+/* ==================== */
+footer {
+    background-color: var(--cod-gray);
+    color: white;
+    padding: 60px 0 30px;
+}
+
+.footer-logo img {
+    max-height: 80px;
+    width: auto;
+    margin-bottom: 20px;
+}
+
+.footer-heading {
+    color: white;
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+    position: relative;
+    padding-bottom: 10px;
+}
+
+.footer-heading::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 50px;
+    height: 2px;
+    background: var(--primary-accent);
+}
+
+.footer-link {
+    color: #aaa;
+    display: block;
+    margin-bottom: 12px;
+    transition: all 0.3s ease;
+    text-decoration: none;
+}
+
+.footer-link:hover {
+    color: white;
+    padding-left: 5px;
+}
+
+.social-icon {
+    color: white;
+    font-size: 1.2rem;
+    margin-right: 15px;
+    transition: all 0.3s ease;
+}
+
+.social-icon:hover {
+    color: var(--primary-accent);
+    transform: translateY(-3px);
+}
+
+.copyright {
+    margin-top: 40px;
+    padding-top: 20px;
+    border-top: 1px solid rgba(255,255,255,0.1);
+}
+
+/* ==================== */
+/* SECTION CONTACT - STYLES EXISTANTS */
+/* ==================== */
+.contact-section {
+    background: linear-gradient(rgba(9,9,9,0.8), rgba(9,9,9,0.8)), url('../img/contact-bg.jpg');
+    background-size: cover;
+    padding: 80px 0;
+}
+
+.contact-card {
+    background: white;
+    border-radius: 12px;
+    padding: 40px;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+}
+
+.contact-icon {
+    color: var(--cobalt);
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+}
+
+/* ==================== */
+/* VERSION MOBILE */
+/* ==================== */
+@media (max-width: 991.98px) {
+    body {
+        padding-top: 70px;
+    }
+    
+    .navbar .dropdown-menu {
+        box-shadow: none !important;
+        border-radius: 0 !important;
+        border-top: none !important;
+        margin-top: 0 !important;
+        transform: none !important;
+        display: none !important;
+    }
+    
+    .navbar .dropdown-menu.show {
+        display: block !important;
+        opacity: 1 !important;
+        visibility: visible !important;
+    }
+    
+    footer {
+        padding: 40px 0 20px;
+    }
+    
+    .footer-col {
+        margin-bottom: 30px;
+    }
+}
+
+@media (max-width: 767px) {
+    .contact-card {
+        padding: 30px 20px;
+    }
+}
+
+/* ==================== */
+/* ANIMATIONS */
+/* ==================== */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px) }
+    to { opacity: 1; transform: translateY(0) }
+}
+/* ==================== */
+/* CONTACT STYLES */
+/* ==================== */
+.contact-section {
+    padding: 4rem 0;
+    background-image: linear-gradient(to bottom, #f0f0f0, #ffffff);
+}
+
+.contact-card {
+    box-shadow: var(--dropdown-shadow);
+    border: 1px solid rgba(7, 79, 179, 0.1);
+}
+
+/* Formulaire */
+.form-control {
+    border: 1px solid rgba(7, 79, 179, 0.2);
+    padding: 0.5rem 0.75rem;
+    font-size: 0.9rem;
+}
+
+.form-control:focus {
+    border-color: var(--cobalt);
+    box-shadow: 0 0 0 0.2rem var(--cobalt-light);
+}
+
+.form-label {
+    font-weight: 500;
+}
+
+/* Colonne droite */
+.bg-cobalt {
+    background-color: var(--cobalt);
+}
+
+.border-white-20 {
+    border-color: rgba(255, 255, 255, 0.2) !important;
+}
+
+.text-jordy-blue {
+    color: var(--jordy-blue);
+}
+
+.social-links a {
+    display: inline-block;
+    width: 32px;
+    height: 32px;
+    line-height: 32px;
+    text-align: center;
+    border-radius: 50%;
+    transition: all 0.3s ease;
+}
+
+.social-links a:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+/* Responsive */
+@media (max-width: 767.98px) {
+    .contact-section {
+        padding: 2rem 0;
+    }
+    
+    .contact-card .col-md-5 {
+        border-top: 3px solid var(--jordy-blue);
+    }
+}

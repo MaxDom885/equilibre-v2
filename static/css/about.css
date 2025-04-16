@@ -1,0 +1,21 @@
+/* Conserver uniquement les styles spécifiques à about */
+.icon-card {
+    transition: transform 0.3s ease;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .icon-card:hover {
+    transform: scale(1.05);
+  }
+  
+  /* Animation spécifique à about */
+  @keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+  }
+  
+  .highlight-card {
+    animation: pulse 2s infinite;
+  }

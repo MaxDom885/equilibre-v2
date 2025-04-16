@@ -1,0 +1,199 @@
+{% extends "core/base.html" %}
+{% load static %}
+
+{% block extra_css %}
+{% endblock extra_css %}
+
+{% block content %}
+<!-- Hero Carousel -->
+<section class="hero-carousel">
+    <div id="mainCarousel" class="carousel slide carousel-fade" data-bs-ride="carousel">
+        <div class="carousel-inner h-100">
+            {% for i in "123" %}
+            <div class="carousel-item h-100 {% if forloop.first %}active{% endif %}">
+                <img src="{% static 'img/hero-'|add:i|add:'.jpg' %}" class="d-block w-100 h-100" alt="Slide {{ i }}" style="object-fit: cover;">
+                <div class="carousel-caption d-flex align-items-center justify-content-start">
+                    <div class="container">
+                        <h1 class="display-1 fw-bold mb-4">Trouvez l'équilibre<br>entre <span class="text-cobalt">INNOVATION</span><br>et <span class="text-accent">PERFORMANCE</span>.</h1>
+                        <a href="{% url 'contact_form' %}" class="btn btn-accent btn-lg py-3 px-4 fw-bold hover-scale">
+                            Démarrons votre projet
+                        </a>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#mainCarousel" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#mainCarousel" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
+    </div>
+</section>
+
+<!-- Split Section -->
+<section class="py-5">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-6 mb-4 mb-lg-0">
+                <img src="{% static 'img/about-preview.jpg' %}" alt="Notre agence" class="img-fluid rounded-3 shadow">
+            </div>
+            <div class="col-lg-6 ps-lg-5">
+                <h2 class="mb-4">Une approche <span class="text-primary">humaine</span> du digital</h2>
+                <p class="lead">Nous transformons les idées audacieuses en solutions technologiques performantes.</p>
+                <p>Notre agence allie expertise technique et vision stratégique pour propulser votre présence digitale.</p>
+                <a href="{% url 'about' %}" class="btn btn-accent px-4">Découvrir notre agence</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Services Section -->
+<section class="py-5 bg-light" id="services">
+    <div class="container">
+        <div class="text-center mb-5">
+            <h2>Nos <span class="text-primary">Expertises</span></h2>
+            <p class="lead">Des solutions sur mesure pour chaque défi digital</p>
+        </div>
+        
+        <div class="row g-4">
+            {% for service in services %}
+            <div class="col-md-6 col-lg-4">
+                <div class="card h-100 border-0 shadow-sm hover-shadow transition-all">
+                    {% if service.image %}
+                    <img src="{{ service.image.url }}" class="card-img-top" alt="{{ service.name }}" style="height: 180px; object-fit: cover;">
+                    {% endif %}
+                    <div class="card-body">
+                        <div class="d-flex align-items-center mb-3">
+                            {% if service.icon %}
+                            <div class="icon-box bg-primary bg-opacity-10 text-primary rounded-circle me-3">
+                                <i class="{{ service.icon }}"></i>
+                            </div>
+                            {% endif %}
+                            <h3 class="h5 mb-0">{{ service.name }}</h3>
+                        </div>
+                        <p class="text-muted">{{ service.short_description|truncatechars:120 }}</p>
+                    </div>
+                    <div class="card-footer bg-transparent border-0 pt-0 pb-3">
+                        <a href="{% url 'service-detail' service.slug %}" class="btn btn-outline-primary btn-sm stretched-link">
+                            Découvrir <i class="fas fa-arrow-right ms-2"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            {% empty %}
+            <div class="col-12 text-center py-4">
+                <div class="alert alert-info">
+                    <p class="mb-0">Aucun service à afficher pour le moment</p>
+                </div>
+                <a href="{% url 'service-list' %}" class="btn btn-primary mt-3">
+                    Voir tous nos services
+                </a>
+            </div>
+            {% endfor %}
+        </div>
+        
+    </div>
+</section>
+
+<!-- Stats Section -->
+<section class="py-5 bg-cobalt text-white Alvaro">
+    <div class="container">
+        <div class="row text-center">
+            <div class="col-6 col-md-3 mb-4 mb-md-0">
+                <div class="counter-value" data-target="3" data-prefix="+" data-suffix="">0</div>
+                <p>ans d'expérience</p>
+            </div>
+            <div class="col-6 col-md-3 mb-4 mb-md-0">
+                <div class="counter-value" data-target="10" data-prefix="+" data-suffix="">0</div>
+                <p>experts</p>
+            </div>
+            <div class="col-6 col-md-3">
+                <div class="counter-value" data-target="45" data-prefix="+" data-suffix="">0</div>
+                <p>projets livrés</p>
+            </div>
+            <div class="col-6 col-md-3">
+                <div class="counter-value" data-target="100" data-prefix="" data-suffix="%">0</div>
+                <p>de satisfaction</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Section Partenaires -->
+<section class="partners-section py-5 bg-light">
+    <div class="container">
+        <div class="text-center mb-5">
+            <h2>Ils nous <span class="text-primary">font confiance</span></h2>
+            <p class="lead">Nos partenaires stratégiques</p>
+        </div>
+        
+        <!-- Slider Swiper - version corrigée -->
+        <div class="swiper partnersSwiper">
+            <div class="swiper-wrapper">
+                {% for partner in partners %}
+                <div class="swiper-slide">
+                    <div class="partner-item">
+                        <a href="{{ partner.url|default:'#' }}" target="_blank" rel="noopener noreferrer">
+                            <img src="{{ partner.logo.url }}" alt="{{ partner.name }}" class="partner-logo img-fluid">
+                        </a>
+                    </div>
+                </div>
+                {% endfor %}
+                <!-- Duplication pour le loop -->
+                {% for partner in partners %}
+                <div class="swiper-slide">
+                    <div class="partner-item">
+                        <a href="{{ partner.url|default:'#' }}" target="_blank" rel="noopener noreferrer">
+                            <img src="{{ partner.logo.url }}" alt="{{ partner.name }}" class="partner-logo img-fluid">
+                        </a>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Contact Form -->
+<section class="py-5 bg-light" id="contact">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <div class="card border-0 shadow">
+                    <div class="card-body p-5">
+                        <h2 class="text-center mb-4">Prêt à transformer votre projet ?</h2>
+                        <form method="post" action="{% url 'home_contact' %}" class="needs-validation" novalidate>
+                            {% csrf_token %}
+                            <div class="row g-3">
+                                <div class="col-md-6">
+                                    <label for="id_name" class="form-label">Noms et Prénom(s)</label>
+                                    <input type="text" class="form-control" id="id_name" name="name" placeholder="Noms et Prénom(s)" required>
+                                    <div class="invalid-feedback">Merci de renseigner vos noms et prénom(s)</div>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="id_email" class="form-label">Votre email</label>
+                                    <input type="email" class="form-control" id="id_email" name="email" placeholder="Votre email" required>
+                                    <div class="invalid-feedback">Merci de renseigner un email valide</div>
+                                </div>
+                                <div class="col-12">
+                                    <label for="id_message" class="form-label">Votre message</label>
+                                    <textarea class="form-control" id="id_message" name="message" rows="5" placeholder="Votre message" required></textarea>
+                                    <div class="invalid-feedback">Merci de saisir votre message</div>
+                                </div>
+                                <div class="col-12 text-center">
+                                    <button type="submit" class="btn btn-accent px-4">Envoyer</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock content %}
+
