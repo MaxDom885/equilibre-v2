@@ -8,13 +8,15 @@
 <!-- Hero Carousel -->
 <section class="hero-carousel">
     <div id="mainCarousel" class="carousel slide carousel-fade" data-bs-ride="carousel">
-        <div class="carousel-inner h-100">
+        <div class="carousel-inner">
             {% for i in "123" %}
-            <div class="carousel-item h-100 {% if forloop.first %}active{% endif %}">
-                <img src="{% static 'img/hero-'|add:i|add:'.jpg' %}" class="d-block w-100 h-100" alt="Slide {{ i }}" style="object-fit: cover;">
-                <div class="carousel-caption d-flex align-items-center justify-content-start">
-                    <div class="container">
-                        <h1 class="display-1 fw-bold mb-4">Trouvez l'équilibre<br>entre <span class="text-cobalt">INNOVATION</span><br>et <span class="text-accent">PERFORMANCE</span>.</h1>
+            <div class="carousel-item {% if forloop.first %}active{% endif %}">
+                <div class="image-container">
+                    <img src="{% static 'img/hero-'|add:i|add:'.jpg' %}" class="d-block w-100" alt="Slide {{ i }}">
+                </div>
+                <div class="carousel-caption d-flex align-items-center justify-content-center">
+                    <div class="text-center">
+                        <h1 class="display-3 display-md-1 fw-bold mb-4">Trouvez l'équilibre<br>entre <span class="text-cobalt">INNOVATION</span><br>et <span class="text-accent">PERFORMANCE</span>.</h1>
                         <a href="{% url 'contact_form' %}" class="btn btn-accent btn-lg py-3 px-4 fw-bold hover-scale">
                             Démarrons votre projet
                         </a>
@@ -100,7 +102,7 @@
 </section>
 
 <!-- Stats Section -->
-<section class="py-5 bg-cobalt text-white Alvaro">
+<section class="py-5 bg-cobalt text-white">
     <div class="container">
         <div class="row text-center">
             <div class="col-6 col-md-3 mb-4 mb-md-0">

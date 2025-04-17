@@ -31,10 +31,15 @@ body {
 }
 
 .navbar-brand img.logo {
-    height: 50px;
+    max-height: 80px;
     width: auto;
-    max-width: 180px;
+    margin-bottom: 20px;
     transition: all 0.3s ease;
+}
+
+.navbar-brand img.logo:hover {
+    opacity: 0.8;
+    transform: scale(1.02);
 }
 
 .navbar-nav .nav-link {
@@ -52,8 +57,22 @@ body {
     font-weight: 600;
 }
 
+.navbar-nav {
+    display: flex;
+    width: 100%;
+}
+
+.nav-item:not(.ms-lg-3) {
+    flex: 1;
+    min-width: 0;
+}
+
+.nav-item.ms-lg-3 {
+    flex: 0 0 auto;
+}
+
 /* ==================== */
-/* DROPDOWN - STYLE PREMIUM */
+/* DROPDOWN  */
 /* ==================== */
 .navbar .dropdown-hover .dropdown-menu {
     min-width: 280px !important;
@@ -136,7 +155,126 @@ body {
 }
 
 /* ==================== */
-/* FOOTER - STYLES EXISTANTS */
+/* ABOUT PAGE STYLES */
+/* ==================== */
+
+/* Section Pourquoi nous choisir */
+.why-choose-us {
+    position: relative;
+}
+
+.why-choose-us .card {
+    transition: all 0.3s ease;
+    border-radius: 12px;
+    overflow: hidden;
+    background: white;
+}
+
+.why-choose-us .shadow-hover:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(7, 79, 179, 0.15) !important;
+}
+
+.icon-wrapper {
+    background: var(--cobalt);
+    transition: all 0.3s ease;
+}
+
+.card:hover .icon-wrapper {
+    transform: rotate(10deg) scale(1.1);
+}
+
+.hover-reveal {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease;
+}
+
+.card:hover .hover-reveal {
+    max-height: 200px;
+}
+
+/* Section Concept Unique */
+.concept-unique-img {
+    border-radius: 12px;
+    box-shadow: 0 15px 30px rgba(7, 79, 179, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.concept-unique-img:hover {
+    transform: scale(1.02);
+}
+
+/* Section Notre Engagement */
+.engagement-badge {
+    width: 60px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transform: translate(-15px, -15px);
+}
+
+/* Section Équipe */
+.team-card {
+    transition: all 0.3s ease;
+    border-radius: 12px;
+}
+
+.team-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 15px 30px rgba(7, 79, 179, 0.15) !important;
+}
+
+.team-card img {
+    transition: all 0.3s ease;
+}
+
+.team-card:hover img {
+    transform: scale(1.05);
+}
+
+.social-icon {
+    width: 36px;
+    height: 36px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: rgba(7, 79, 179, 0.1);
+    transition: all 0.3s ease;
+}
+
+.social-icon:hover {
+    background: var(--cobalt);
+    color: white !important;
+    transform: translateY(-3px);
+}
+
+/* Animations spécifiques */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.animate-card {
+    animation: fadeInUp 0.6s ease forwards;
+}
+
+/* Délais d'animation pour chaque carte */
+.why-choose-us .col-lg-3:nth-child(1) .card { animation-delay: 0.1s; }
+.why-choose-us .col-lg-3:nth-child(2) .card { animation-delay: 0.2s; }
+.why-choose-us .col-lg-3:nth-child(3) .card { animation-delay: 0.3s; }
+.why-choose-us .col-lg-3:nth-child(4) .card { animation-delay: 0.4s; }
+
+/* ==================== */
+/* FOOTER STYLES */
 /* ==================== */
 footer {
     background-color: var(--cod-gray);
@@ -200,73 +338,6 @@ footer {
 }
 
 /* ==================== */
-/* SECTION CONTACT - STYLES EXISTANTS */
-/* ==================== */
-.contact-section {
-    background: linear-gradient(rgba(9,9,9,0.8), rgba(9,9,9,0.8)), url('../img/contact-bg.jpg');
-    background-size: cover;
-    padding: 80px 0;
-}
-
-.contact-card {
-    background: white;
-    border-radius: 12px;
-    padding: 40px;
-    box-shadow: 0 15px 40px rgba(0,0,0,0.1);
-}
-
-.contact-icon {
-    color: var(--cobalt);
-    font-size: 1.5rem;
-    margin-bottom: 15px;
-}
-
-/* ==================== */
-/* VERSION MOBILE */
-/* ==================== */
-@media (max-width: 991.98px) {
-    body {
-        padding-top: 70px;
-    }
-    
-    .navbar .dropdown-menu {
-        box-shadow: none !important;
-        border-radius: 0 !important;
-        border-top: none !important;
-        margin-top: 0 !important;
-        transform: none !important;
-        display: none !important;
-    }
-    
-    .navbar .dropdown-menu.show {
-        display: block !important;
-        opacity: 1 !important;
-        visibility: visible !important;
-    }
-    
-    footer {
-        padding: 40px 0 20px;
-    }
-    
-    .footer-col {
-        margin-bottom: 30px;
-    }
-}
-
-@media (max-width: 767px) {
-    .contact-card {
-        padding: 30px 20px;
-    }
-}
-
-/* ==================== */
-/* ANIMATIONS */
-/* ==================== */
-@keyframes fadeIn {
-    from { opacity: 0; transform: translateY(10px) }
-    to { opacity: 1; transform: translateY(0) }
-}
-/* ==================== */
 /* CONTACT STYLES */
 /* ==================== */
 .contact-section {
@@ -322,13 +393,266 @@ footer {
     background: rgba(255, 255, 255, 0.1);
 }
 
-/* Responsive */
+/* ==================== */
+/* COUNTERS SECTION */
+/* ==================== */
+.counter-section {
+    padding: 3rem 0;
+}
+
+.counter-value {
+    font-size: 2.5rem;
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: 0.5rem;
+    color: white;
+    font-family: 'Poppins', sans-serif;
+    display: block;
+    transition: transform 0.3s ease;
+}
+
+.counter-label {
+    font-size: 1rem;
+    opacity: 0.9;
+    margin-bottom: 0;
+    font-weight: 400;
+    display: block;
+    position: relative;
+}
+
+.counter-item {
+    position: relative;
+    padding-bottom: 15px;
+}
+
+.counter-item::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 50px;
+    height: 2px;
+    background: rgba(255, 255, 255, 0.3);
+}
+
+/* ==================== */
+/* RESPONSIVE STYLES */
+/* ==================== */
+@media (max-width: 991.98px) {
+    .why-choose-us .card {
+        margin-bottom: 20px;
+    }
+    
+    .hover-reveal {
+        max-height: none;
+        overflow: visible;
+    }
+    
+    body {
+        padding-top: 70px;
+    }
+    
+    .navbar .dropdown-menu {
+        box-shadow: none !important;
+        border-radius: 0 !important;
+        border-top: none !important;
+        margin-top: 0 !important;
+        transform: none !important;
+        display: none !important;
+    }
+    
+    .navbar .dropdown-menu.show {
+        display: block !important;
+        opacity: 1 !important;
+        visibility: visible !important;
+    }
+    
+    footer {
+        padding: 40px 0 20px;
+    }
+    
+    .footer-col {
+        margin-bottom: 30px;
+    }
+}
+
 @media (max-width: 767.98px) {
+    .contact-card {
+        padding: 30px 20px;
+    }
+    
     .contact-section {
         padding: 2rem 0;
     }
     
     .contact-card .col-md-5 {
         border-top: 3px solid var(--jordy-blue);
+    }
+}
+
+@media (min-width: 576px) {
+    .counter-value { font-size: 3rem; }
+    .counter-label { font-size: 1.1rem; }
+}
+
+@media (min-width: 768px) {
+    .counter-value { font-size: 3.5rem; }
+    .counter-label { font-size: 1.15rem; }
+    .counter-section { padding: 4rem 0; }
+}
+
+@media (min-width: 992px) {
+    .counter-value { font-size: 4rem; }
+    .counter-label { font-size: 1.2rem; }
+    .counter-section { padding: 5rem 0; }
+}
+
+/* ==================== */
+/* ANIMATIONS */
+/* ==================== */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px) }
+    to { opacity: 1; transform: translateY(0) }
+}
+
+/* Effets supplémentaires */
+.counter-item:hover .counter-value {
+    transform: scale(1.05);
+    color: var(--jordy-blue);
+}
+
+.counter-item:hover .counter-label {
+    opacity: 1;
+}
+/* ==================== */
+/* HERO CAROUSEL STYLES */
+/* ==================== */
+.hero-carousel {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+}
+
+.hero-carousel .carousel-inner {
+    height: 80vh; /* Hauteur fixe pour le carousel */
+    min-height: 500px; /* Hauteur minimale */
+    max-height: 800px; /* Hauteur maximale */
+}
+
+.hero-carousel .image-container {
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+.hero-carousel .image-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+
+.hero-carousel .carousel-caption {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    padding: 0;
+    text-align: center;
+}
+
+.hero-carousel .carousel-caption h1 {
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    line-height: 1.2;
+}
+
+.hero-carousel .text-cobalt {
+    color: var(--cobalt);
+}
+
+.hero-carousel .text-accent {
+    color: var(--primary-accent);
+}
+
+/* Boutons de navigation */
+.hero-carousel .carousel-control-prev,
+.hero-carousel .carousel-control-next {
+    width: 50px;
+    height: 50px;
+    background-color: rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    top: 50%;
+    transform: translateY(-50%);
+    opacity: 0.8;
+    transition: all 0.3s ease;
+}
+
+.hero-carousel .carousel-control-prev:hover,
+.hero-carousel .carousel-control-next:hover {
+    background-color: rgba(255, 255, 255, 0.4);
+    opacity: 1;
+}
+
+.hero-carousel .carousel-control-prev {
+    left: 20px;
+}
+
+.hero-carousel .carousel-control-next {
+    right: 20px;
+}
+
+/* ==================== */
+/* RESPONSIVE ADJUSTMENTS */
+/* ==================== */
+@media (max-width: 1199.98px) {
+    .hero-carousel .carousel-inner {
+        height: 70vh;
+    }
+}
+
+@media (max-width: 991.98px) {
+    .hero-carousel .carousel-inner {
+        height: 60vh;
+    }
+    
+    .hero-carousel .carousel-caption h1 {
+        font-size: 2.5rem;
+    }
+}
+
+@media (max-width: 767.98px) {
+    .hero-carousel .carousel-inner {
+        height: 50vh;
+        min-height: 400px;
+    }
+    
+    .hero-carousel .carousel-caption h1 {
+        font-size: 2rem;
+        margin-bottom: 1.5rem;
+    }
+    
+    .hero-carousel .btn-lg {
+        padding: 0.75rem 1.5rem;
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 575.98px) {
+    .hero-carousel .carousel-inner {
+        height: 60vh;
+        min-height: 350px;
+    }
+    
+    .hero-carousel .carousel-caption h1 {
+        font-size: 1.75rem;
+        margin-bottom: 1rem;
+    }
+    
+    .hero-carousel .carousel-control-prev,
+    .hero-carousel .carousel-control-next {
+        width: 40px;
+        height: 40px;
     }
 }
