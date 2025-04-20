@@ -12,7 +12,6 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{% static 'css/custom.css' %}">
-    <link rel="stylesheet" href="{% static 'css/about.css' %}">
     <!-- Favicon -->
     <link rel="icon" href="{% static 'img/favicon.ico' %}" type="image/x-icon">
     <link rel="apple-touch-icon" sizes="180x180" href="{% static 'img/favicon-180x180.png' %}">
@@ -31,8 +30,7 @@
 </head>
 
 <body>
-     <!-- Navbar -->
-     <nav class="navbar navbar-expand-lg sticky-top">
+    <nav class="navbar navbar-expand-lg sticky-top py-2 py-lg-0">
         <div class="container">
             <a class="navbar-brand" href="{% url 'home' %}">
                 <img src="{% static 'img/logo-ea.png' %}" alt="Logo" class="logo">
@@ -41,16 +39,16 @@
                 aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-
+    
             <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto">
+                <ul class="navbar-nav w-100 align-items-lg-center">
                     <li class="nav-item">
                         <a class="nav-link {% if request.path == '/' %}active{% endif %}" href="{% url 'home' %}">Accueil</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link {% if 'notre-agence' in request.path %}active{% endif %}" href="{% url 'about' %}">Notre Agence</a>
                     </li>
-
+    
                     <!-- Dropdown Services -->
                     <li class="nav-item dropdown dropdown-hover">
                         <a class="nav-link dropdown-toggle {% if '/services/' in request.path %}active{% endif %}"
@@ -63,7 +61,7 @@
                         <ul class="dropdown-menu">
                             {% for service in all_active_services %}
                             <li>
-                                <a class="dropdown-item" {% if request.path == service.get_absolute_url %}active{% endif %}
+                                <a class="dropdown-item {% if request.path == service.get_absolute_url %}active{% endif %}"
                                    href="{% url 'service-detail' service.slug %}">
                                     {{ service.name }}
                                 </a>
@@ -73,8 +71,8 @@
                             {% endfor %}
                         </ul>
                     </li>
-
-                    <li class="nav-item ms-lg-3">
+    
+                    <li class="nav-item ms-lg-auto mt-lg-0 mt-3">
                         <a class="btn btn-accent {% if 'contact' in request.path %}active{% endif %}" href="{% url 'contact_form' %}">Contactez-nous</a>
                     </li>
                 </ul>
@@ -185,68 +183,60 @@
     /**
      * Initialisation des dropdowns avec hover sur desktop
      */
-    function initDropdowns() {
-        const dropdowns = document.querySelectorAll('.dropdown-hover');
-        if (!dropdowns.length) return;
+   function initDropdowns() {
+    const dropdowns = document.querySelectorAll('.dropdown');
+    
+    // Fonction pour fermer tous les dropdowns sauf celui spécifié
+    const closeOtherDropdowns = (currentDropdown) => {
+        document.querySelectorAll('.dropdown').forEach(dd => {
+            if (dd !== currentDropdown) {
+                dd.querySelector('.dropdown-menu').classList.remove('show');
+            }
+        });
+    };
 
-        const handleDesktopBehavior = (dropdown) => {
-            const menu = dropdown.querySelector('.dropdown-menu');
-            
+    dropdowns.forEach(dropdown => {
+        const toggle = dropdown.querySelector('.dropdown-toggle');
+        const menu = dropdown.querySelector('.dropdown-menu');
+        
+        // Desktop - Hover
+        if (window.innerWidth >= 992) {
             dropdown.addEventListener('mouseenter', () => {
-                menu.style.display = 'block';
-                setTimeout(() => menu.classList.add('show'), 10);
+                menu.classList.add('show');
+                closeOtherDropdowns(dropdown);
             });
             
             dropdown.addEventListener('mouseleave', () => {
                 menu.classList.remove('show');
-                setTimeout(() => {
-                    if (!menu.classList.contains('show')) {
-                        menu.style.display = 'none';
-                    }
-                }, 300);
             });
-        };
-
-        const handleMobileBehavior = (dropdown) => {
-            const toggle = dropdown.querySelector('.dropdown-toggle');
-            const menu = dropdown.querySelector('.dropdown-menu');
-            
-            toggle.addEventListener('click', (e) => {
+        }
+        
+        // Mobile - Click
+        toggle.addEventListener('click', (e) => {
+            if (window.innerWidth < 992) {
                 e.preventDefault();
                 menu.classList.toggle('show');
-                menu.style.display = menu.classList.contains('show') ? 'block' : 'none';
-            });
-        };
-
-        dropdowns.forEach(dropdown => {
-            const isDesktop = window.matchMedia('(min-width: 992px)').matches;
-            isDesktop ? handleDesktopBehavior(dropdown) : handleMobileBehavior(dropdown);
-        });
-
-        // Fermeture en cliquant ailleurs
-        document.addEventListener('click', (e) => {
-            if (!e.target.closest('.dropdown-hover')) {
-                document.querySelectorAll('.dropdown-menu.show').forEach(menu => {
-                    menu.classList.remove('show');
-                    menu.style.display = 'none';
-                });
+                closeOtherDropdowns(dropdown);
             }
         });
-
-        // Réinitialisation au redimensionnement
-        window.addEventListener('resize', () => {
-            const isNowDesktop = window.matchMedia('(min-width: 992px)').matches;
-            dropdowns.forEach(dropdown => {
-                const menu = dropdown.querySelector('.dropdown-menu');
-                if (isNowDesktop) {
-                    menu.style.display = 'none';
-                    menu.classList.remove('show');
-                } else {
-                    menu.style.display = '';
-                }
+    });
+    
+    // Fermer en cliquant ailleurs
+    document.addEventListener('click', (e) => {
+        if (!e.target.closest('.dropdown')) {
+            document.querySelectorAll('.dropdown-menu.show').forEach(menu => {
+                menu.classList.remove('show');
             });
+        }
+    });
+    
+    // Gérer le redimensionnement
+    window.addEventListener('resize', () => {
+        document.querySelectorAll('.dropdown-menu.show').forEach(menu => {
+            menu.classList.remove('show');
         });
-    }
+    });
+}
 
     /**
      * Initialisation du slider Swiper

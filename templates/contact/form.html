@@ -95,13 +95,41 @@
                                 <h4 class="h5 fw-bold mb-3">Horaires d'ouverture</h4>
                                 <p class="mb-4">{{ config.horaires|default:"Lun-Ven : 9h-18h" }}</p>
                                 
-                                <div class="social-links mt-4 pt-2">
+                                <div class="social-links d-flex align-items-center mt-4 pt-2">
                                     {% if config.social_facebook %}
-                                    <a href="{{ config.social_facebook }}" class="text-white me-3 hover-scale" target="_blank" aria-label="Facebook">
+                                    <a href="{{ config.social_facebook }}" class="social-icon me-3 hover-scale" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
                                         <i class="fab fa-facebook-f fa-lg"></i>
+                                        <span class="visually-hidden">Facebook</span>
                                     </a>
                                     {% endif %}
-                                    <!-- Other social icons... -->
+                                    
+                                    {% if config.social_twitter %}
+                                    <a href="{{ config.social_twitter }}" class="social-icon me-3 hover-scale" target="_blank" rel="noopener noreferrer" aria-label="Twitter">
+                                        <i class="fab fa-twitter fa-lg"></i>
+                                        <span class="visually-hidden">Twitter</span>
+                                    </a>
+                                    {% endif %}
+                                    
+                                    {% if config.social_linkedin %}
+                                    <a href="{{ config.social_linkedin }}" class="social-icon me-3 hover-scale" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+                                        <i class="fab fa-linkedin-in fa-lg"></i>
+                                        <span class="visually-hidden">LinkedIn</span>
+                                    </a>
+                                    {% endif %}
+                                    
+                                    {% if config.social_instagram %}
+                                    <a href="{{ config.social_instagram }}" class="social-icon me-3 hover-scale" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+                                        <i class="fab fa-instagram fa-lg"></i>
+                                        <span class="visually-hidden">Instagram</span>
+                                    </a>
+                                    {% endif %}
+                                    
+                                    {% if config.social_youtube %}
+                                    <a href="{{ config.social_youtube }}" class="social-icon hover-scale" target="_blank" rel="noopener noreferrer" aria-label="YouTube">
+                                        <i class="fab fa-youtube fa-lg"></i>
+                                        <span class="visually-hidden">YouTube</span>
+                                    </a>
+                                    {% endif %}
                                 </div>
                             </div>
                         </div>
