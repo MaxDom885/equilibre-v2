@@ -42,6 +42,21 @@
         animation: sectionEntrance 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
         opacity: 0;
     }
+
+    /* Ajout pour le texte justifié */
+    .service-description,
+    .strengths-text {
+        text-align: justify;
+        text-justify: inter-word; /* Pour une meilleure justification */
+    }
+
+    /* Pour les écrans larges, vous pouvez ajouter une marge pour améliorer la lisibilité */
+    @media (min-width: 992px) {
+        .service-description,
+        .strengths-text {
+            padding: 0 2rem;
+        }
+    }
 </style>
 {% endblock %}
 
